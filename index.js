@@ -13,21 +13,22 @@ function renderTable(){
     for (var i = 0; i < dataSet.length; i++) {
         //Obtain current object and fields
         var currentObj = dataSet[i];
+        var sightingNum = i + 1;
+        currentObj[sightingNum] = sightingNum;
         var objFields = Object.keys(currentObj);
-        //var sightingCount = i + 1;
         //new row in tbody, index set i + index start
         var $row = $tbody.insertRow(i);
         for (var j = 0; j < objFields.length; j++) {
         // For every field in the address object, create a new cell at set its inner text to be the current value at the current field value
-        var field = objFields[j];
-        var $cell = $row.insertCell(j);
-        $cell.innerText = currentObj[field];
+            var field = objFields[j];
+            var $cell = $row.insertCell(j);
+            $cell.innerText = currentObj[field];
         
         }
     }
 };
 
-//currentObj.unshift(i)
+
 
 function handleSearchButtonClick() {
     //remove whitespace on input
