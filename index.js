@@ -1,8 +1,12 @@
-// Loop through array of objects and print the value of the 'name' property for each one
-var count = 0
-
 // Reference to tbody element
 var $tbody = document.querySelector("tbody");
+var $dateInput = document.querySelector("#datesearch");
+var $searchBtn = document.querySelector("#search");
+// Add an event listener to the searchButton, call handleSearchButtonClick when clicked
+$searchBtn.addEventListener("click", handleSearchButtonClick);
+// Set filteredDates to dataSet initially
+var filteredDates = dataSet;
+
 
 function renderTable(){
     $tbody.innerHTML = "";
@@ -10,21 +14,32 @@ function renderTable(){
         //Obtain current object and fields
         var currentObj = dataSet[i];
         var objFields = Object.keys(currentObj);
+        //var sightingCount = i + 1;
         //new row in tbody, index set i + index start
         var $row = $tbody.insertRow(i);
-        
         for (var j = 0; j < objFields.length; j++) {
-        // For every field in the address object, create a new cell at set its inner text to be the current value at the current address's field
+        // For every field in the address object, create a new cell at set its inner text to be the current value at the current field value
         var field = objFields[j];
         var $cell = $row.insertCell(j);
         $cell.innerText = currentObj[field];
+        
         }
-        // count = i;
     }
-
-    //console.log(count);
 };
 
+//currentObj.unshift(i)
+
+function handleSearchButtonClick() {
+    //remove whitespace on input
+    var filterDate = $dateInput.value.trim()
+    
+    filteredDates = dataSet.filter(function(currentObj) {
+        return currentObject.datetime === filterDate;
+    });
+    renderTable();
+  }
+
+//Render table on page load
 renderTable();
 
 // Field Properties:
