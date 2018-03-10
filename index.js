@@ -5,14 +5,13 @@ var $searchBtn = document.querySelector("#search");
 // Add an event listener to the searchButton, call handleSearchButtonClick when clicked
 $searchBtn.addEventListener("click", handleSearchButtonClick);
 // Set filteredDates to dataSet initially
-var filteredDates = dataSet;
 
 
-function renderTable(){
+function renderTable(data){
     $tbody.innerHTML = "";
-    for (var i = 0; i < dataSet.length; i++) {
+    for (var i = 0; i < data.length; i++) {
         //Obtain current object and fields
-        var currentObj = dataSet[i];
+        var currentObj = data[i];
         var sightingNum = i + 1;
         currentObj[sightingNum] = sightingNum;
         var objFields = Object.keys(currentObj);
@@ -34,14 +33,14 @@ function handleSearchButtonClick() {
     //remove whitespace on input
     var filterDate = $dateInput.value.trim()
     
-    filteredDates = dataSet.filter(function(currentObj) {
-        return currentObject.datetime === filterDate;
+    var searchResults = dataSet.filter(function(currentObj) {
+        return currentObj.datetime === filterDate;
     });
-    renderTable();
+    renderTable(searchResults);
   }
 
 //Render table on page load
-renderTable();
+renderTable(dataSet);
 
 // Field Properties:
 
